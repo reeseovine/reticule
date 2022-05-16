@@ -4,10 +4,15 @@ basic express server for saving online articles to read later.
 
 ### To do
 
-- [x] a basic API so you can save articles with a web browser bookmarklet
-- [x] an RSS endpoint so you can sync it with your feed aggregator of choice
+- [x] basic API
+  - [x] add an article
+  - [x] RSS endpoint so you can sync it with your feed aggregator of choice
+  - [ ] delete an article?
 - [ ] add a database (sqlite, probably)
+- [ ] make a browser bookmarklet for quickly saving articles
+- [ ] log some useful info on startup, like the bookmarklet code
+- [ ] find a slightly better name
 
 ### Will not do
 
-- no frontend, i'm keeping it simple. why not make one yourself? 😉
+- make a frontend. i'm keeping it simple, why not fork it and add one yourself? 😉
