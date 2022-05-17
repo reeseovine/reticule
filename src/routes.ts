@@ -1,16 +1,16 @@
 import { Express, Router, Request, Response } from 'express'
 
+import db from './database'
 import config from './config'
 
 import noCache from './middleware/no-cache'
 import cacheForever from './middleware/cache-forever'
 
 import { extract, ArticleData } from 'article-parser'
-
-interface ArticleDataWithDateAdded extends ArticleData {
+interface Article extends ArticleData {
 	added: Date
+	id: number
 }
-let fakeDB: ArticleDataWithDateAdded[] = []
 
 const router = Router()
 
@@ -22,7 +22,7 @@ router.get('/robots.txt', cacheForever(), (_: Request, res: Response) => {
 })
 
 router.get('/healthcheck', noCache(), (_: Request, res: Response) => {
-	res.json({ timestamp: new Date() })
+	res.json({ timestamp: Date.now() })
 })
 
 router.get('/add', noCache(), (req: Request, res: Response) => {
@@ -40,10 +40,11 @@ router.get('/add', noCache(), (req: Request, res: Response) => {
 
 	extract(url)
 		.then((article) => {
-			fakeDB.push(
+			db.add(
 				Object.assign(article, {
 					added: new Date(),
-				}) as ArticleDataWithDateAdded
+					id: Date.now(),
+				}) as Article
 			)
 			return res.sendStatus(200)
 		})
@@ -68,15 +69,15 @@ router.get('/feed', (req: Request, res: Response) => {
 	<description>Articles saved to be read later</description>
 	<generator>readerss</generator>
 	<language>en</language>
-	<pubDate>${new Date(fakeDB[0]?.added).toUTCString()}</pubDate>
+	<pubDate>${new Date(db.get(-1).added).toUTCString()}</pubDate>
 `
 
-	for (var entry of fakeDB) {
+	for (var entry of db.getAll()) {
 		rss += `
 	<item>
 		<title>${entry.title}</title>
 		<link>${entry.url}</link>
-		<guid>${entry.url}</guid>
+		<guid>${entry.id}</guid>
 		<pubDate>${entry.added}</pubDate>
 		<description><![CDATA[${entry.description}]]></description>
 		<content:encoded><![CDATA[${entry.content}]]></content:encoded>

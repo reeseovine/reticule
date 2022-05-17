@@ -23,7 +23,7 @@ const confSchema: Shape[] = [
 	},
 	{
 		key: 'db_file',
-		def: '/data/db',
+		def: '/data/db.json',
 		env: 'DB_FILE',
 		validate: (value) => typeof value === 'string' && value.length > 0,
 	},
