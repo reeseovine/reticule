@@ -26,7 +26,7 @@ basic express server for saving online articles to read later.
 
 ```sh
 docker run -d \
-  -p 3000:3000 \
+  -p 3000:80 \
   -e API_KEY=e44dd04a559c71f0 \
   -v ./readerdata:/data \
   reeseovine/readerss:latest

@@ -75,7 +75,7 @@ router.get('/feed', (req: Request, res: Response) => {
 	<description>${config.feed_desc}</description>
 	<generator>readerss</generator>
 	<language>en</language>
-	<pubDate>${new Date(db.get(-1).added).toUTCString()}</pubDate>
+	<pubDate>${db.getAll().length > 0 ? new Date(db.get(-1).added).toUTCString() : ''}</pubDate>
 `
 
 	for (var entry of db.getAll()) {

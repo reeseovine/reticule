@@ -12,7 +12,7 @@ interface Shape {
 const confSchema: Shape[] = [
 	{
 		key: 'port',
-		def: 3000,
+		def: 80,
 		env: 'PORT',
 	},
 	{
