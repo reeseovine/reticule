@@ -1,7 +1,11 @@
 dist/
-.env
+*.env
 config/local*
 tmp/
+.gitignore
+nodemon.json
+.editorconfig
+README.md
 
 
 #### Common junk files ####

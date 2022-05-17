@@ -29,10 +29,9 @@ router.get('/add', noCache(), (req: Request, res: Response) => {
 	if (!req.query.key || req.query.key != config.api_key) {
 		return res.sendStatus(401)
 	}
-	console.info(`Authorized add from ${req.ip}`)
 
 	if (!req.query.url) {
-		console.error('URL not valid. Skipping...')
+		console.error('No URL given. Skipping...')
 		return res.sendStatus(400)
 	}
 	console.info(`Adding ${req.query.url}`)
@@ -54,12 +53,19 @@ router.get('/add', noCache(), (req: Request, res: Response) => {
 		})
 })
 
-router.get('/feed', (req: Request, res: Response) => {
+router.get('/json', (req: Request, res: Response) => {
 	if (!req.query.key || req.query.key != config.api_key) {
-		console.warn(`Unauthorized feed attempt from ${req.ip} !`)
+		console.warn(`Unauthorized json read attempt from ${req.ip} !`)
 		return res.sendStatus(401)
 	}
-	console.info(`Authorized feed from ${req.ip}`)
+	res.json(db.getAll())
+})
+
+router.get('/feed', (req: Request, res: Response) => {
+	if (!req.query.key || req.query.key != config.api_key) {
+		console.warn(`Unauthorized feed read attempt from ${req.ip} !`)
+		return res.sendStatus(401)
+	}
 
 	let rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -92,6 +98,4 @@ router.get('/feed', (req: Request, res: Response) => {
 	res.send(rss)
 })
 
-export default (app: Express): void => {
-	app.use(router)
-}
+export default router

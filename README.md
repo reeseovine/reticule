@@ -10,7 +10,7 @@ basic express server for saving online articles to read later.
   - [ ] delete an article?
 - [x] get configuration from environment variables
 - [x] add a database (stored as JSON but i would like to use sqlite3. i just have no idea what i'm doing.)
-- [ ] add docker support
+- [x] add docker support
 - [ ] make a browser bookmarklet for quickly saving articles
 - [ ] log some useful info on startup, like the bookmarklet code
 - [ ] find a slightly better name
