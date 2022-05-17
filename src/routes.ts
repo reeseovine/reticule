@@ -45,7 +45,7 @@ router.get('/add', noCache(), (req: Request, res: Response) => {
 					id: Date.now(),
 				}) as Article
 			)
-			return res.sendStatus(200)
+			return res.status(200).send(`Successfully saved "${article.title}"!`)
 		})
 		.catch((err) => {
 			console.trace(err)

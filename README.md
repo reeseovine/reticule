@@ -7,12 +7,13 @@ basic express server for saving online articles to read later.
 - [x] basic API
   - [x] add an article
   - [x] RSS endpoint so you can sync it with your feed aggregator of choice
+  - [ ] deduplicate articles
   - [ ] delete an article?
 - [x] get configuration from environment variables
 - [x] add a database (stored as JSON but i would like to use sqlite3. i just have no idea what i'm doing.)
 - [x] add docker support
-- [ ] make a browser bookmarklet for quickly saving articles
-- [ ] log some useful info on startup, like the bookmarklet code
+- [x] make a browser bookmarklet for quickly saving articles
+- [x] log some useful info on startup, like the bookmarklet code
 - [ ] find a slightly better name
 
 ### Will not do
@@ -62,3 +63,10 @@ services:
 | DB_FILE          | The path and filename of the database file within the container.  |
 | FEED_TITLE       | The name of your reading list feed that shows up in feed readers. |
 | FEED_DESCRIPTION | A short description to accompany the above.                       |
+
+## Usage
+
+1. Copy the bookmarklet code from the logs and replace `<SERVER_ADDRESS>` with the IP address or domain name.
+2. Create a new bookmark in your browser (in the bookmarks bar for easy access, perhaps) with the name "Read later" (or whatever you want) and set the URL to the bookmarklet code.
+3. Go to an article that you want to save, click the bookmark, et voila!
+4. Add the RSS feed endpoint (`<SERVER_ADDRESS>/feed?key=<API_KEY>`) to your feed reader of choice.
