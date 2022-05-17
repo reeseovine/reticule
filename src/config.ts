@@ -1,6 +1,50 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import dotenv from 'dotenv'
+dotenv.config()
 
 // TODO: do some processing on the env variables, include some sane defaults
 
-export default {...process.env}
+interface Shape {
+	key: string
+	def: string | number // default value ('default' is a reserved keyword, so i used 'def')
+	env: string
+	validate?: (value: any) => boolean
+}
+const confSchema: Shape[] = [
+	{
+		key: 'port',
+		def: 3000,
+		env: 'PORT',
+	},
+	{
+		key: 'api_key',
+		def: '',
+		env: 'API_KEY',
+		validate: (value) => typeof value === 'string' && value.length > 0,
+	},
+	{
+		key: 'db_file',
+		def: '/data/db',
+		env: 'DB_FILE',
+		validate: (value) => typeof value === 'string' && value.length > 0,
+	},
+	{
+		key: 'feed_title',
+		def: 'Reading list',
+		env: 'FEED_TITLE',
+	},
+	{
+		key: 'feed_desc',
+		def: 'Articles saved to be read later',
+		env: 'FEED_DESCRIPTION',
+	},
+]
+
+interface Conf {
+	[name: string]: string | number
+}
+let envConf: Conf = {}
+for (var item of confSchema) {
+	envConf[item.key] = (process.env[item.env] as string | number | undefined) || item.def
+}
+
+export default envConf
