@@ -71,8 +71,8 @@ router.get('/feed', (req: Request, res: Response) => {
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
 
 <channel>
-	<title>Reading list</title>
-	<description>Articles saved to be read later</description>
+	<title>${config.feed_title}</title>
+	<description>${config.feed_desc}</description>
 	<generator>readerss</generator>
 	<language>en</language>
 	<pubDate>${new Date(db.get(-1).added).toUTCString()}</pubDate>

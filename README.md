@@ -18,3 +18,47 @@ basic express server for saving online articles to read later.
 ### Will not do
 
 - make a frontend. i'm keeping it simple, why not fork it and add one yourself? 😉
+
+## Setup
+
+### Docker
+
+```sh
+docker run -d \
+  -p 3000:3000 \
+  -e API_KEY=e44dd04a559c71f0 \
+  -v ./readerdata:/data \
+  reeseovine/readerss:latest
+```
+
+### Docker Compose
+
+```yaml
+version: '3.8'
+services:
+  readerss:
+    image: reeseovine/readerss:latest
+    restart: unless-stopped
+    ports:
+      - 3000:80
+    volumes:
+      - ./readerdata:/data
+    environment:
+      - API_KEY=5184424c7804a089  # generate a strong secret with `openssl rand -hex 32`
+      
+      # these variables are optional, and the defaults are provided for reference.
+      - PORT=80
+      - DB_FILE=/data/db.json
+      - FEED_TITLE=Reading list
+      - FEED_DESCRIPTION=Articles saved to be read later
+```
+
+### Environment variables
+
+| variable         | description                                                       |
+|:-----------------|:------------------------------------------------------------------|
+| API_KEY          | The password needed to be able to use the API.                    |
+| PORT             | The port within the container that the server runs on.            |
+| DB_FILE          | The path and filename of the database file within the container.  |
+| FEED_TITLE       | The name of your reading list feed that shows up in feed readers. |
+| FEED_DESCRIPTION | A short description to accompany the above.                       |

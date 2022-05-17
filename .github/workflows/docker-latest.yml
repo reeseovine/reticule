@@ -3,7 +3,7 @@ name: Publish Docker image on git-push
 on: push
 
 jobs:
-  docker_build_edge:
+  docker-latest:
     runs-on: ubuntu-20.04
     steps:
       - name: Check out the repo
@@ -20,9 +20,8 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: reeseovine/readerss
-          tags: type=edge
-          labels: |
-            org.opencontainers.image.licenses=MIT
+          tags: type=raw,value=latest
+          labels: org.opencontainers.image.licenses=MIT
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
