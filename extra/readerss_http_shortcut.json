@@ -1,0 +1,43 @@
+{
+	"categories": [
+		{
+			"id": "ebb3548e-4679-4a76-a0f1-eb0e272ddcf9",
+			"name": "Shortcuts",
+			"shortcuts": [
+				{
+					"description": "Save an article to read later",
+					"iconName": "flat_color_pin",
+					"id": "39fb3ee7-cb24-4c7e-beec-4e12f260c453",
+					"launcherShortcut": true,
+					"name": "Read Later",
+					"quickSettingsTileShortcut": true,
+					"responseHandling": {
+						"uiType": "toast"
+					},
+					"url": "{{46f4aa6c-36f2-4355-ae47-02d7aba12ef7}}/add?key\u003d{{21e44c15-ba2d-4be1-832f-c0ff0106325d}}\u0026url\u003d{{fd0331b6-7636-4795-a079-c7ed5ae66aca}}"
+				}
+			]
+		}
+	],
+	"variables": [
+		{
+			"id": "46f4aa6c-36f2-4355-ae47-02d7aba12ef7",
+			"key": "readerss_instance",
+			"value": "https://your.instance.url.without.trailing.slash"
+		},
+		{
+			"id": "21e44c15-ba2d-4be1-832f-c0ff0106325d",
+			"key": "readerss_api_key",
+			"value": "your_key_that_you_used_when_setting_up_your_instance"
+		},
+		{
+			"flags": 1,
+			"id": "fd0331b6-7636-4795-a079-c7ed5ae66aca",
+			"key": "readerss_url",
+			"title": "Article URL",
+			"type": "text",
+			"urlEncode": true
+		}
+	],
+	"version": 51
+}
