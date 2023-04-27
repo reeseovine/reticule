@@ -2,27 +2,10 @@
 
 basic express server for saving online articles to read later.
 
-### To do
+### note: improvements are underway and i'm planning to release a proper Version™ with a new name and license soon.
+see [todo.md](todo.md) for roadmap
 
-- [x] basic API
-  - [x] add an article
-  - [x] RSS endpoint so you can sync it with your feed aggregator of choice
-  - [ ] deduplicate articles
-  - [ ] delete an article?
-- [x] get configuration from environment variables
-- [x] add a database (stored as JSON but i would like to use sqlite3. i just have no idea what i'm doing.)
-- [x] add docker support
-- [x] make a browser bookmarklet for quickly saving articles
-- [x] log some useful info on startup, like the bookmarklet code
-- [x] improve usage instructions (add from browser, add from phone with HTTP Shortcuts, etc)
-- [ ] sanitize articles before saving them
-- [ ] find a slightly better name
-
-### Will not do
-
-- make a frontend. i'm keeping it simple, why not fork it and add one yourself? 😉
-
-## Setup
+## Installation
 
 ### Docker
 
@@ -60,7 +43,7 @@ services:
 
 | variable         | description                                                       |
 |:-----------------|:------------------------------------------------------------------|
-| API_KEY          | The password needed to be able to use the API.                    |
+| API_KEY          | The password needed to be able to use the API (required).         |
 | PORT             | The port within the container that the server runs on.            |
 | DB_FILE          | The path and filename of the database file within the container.  |
 | FEED_TITLE       | The name of your reading list feed that shows up in feed readers. |
@@ -78,7 +61,7 @@ services:
 2. Download [`readerss_http_shortcut.json`](extra/readerss_http_shortcut.json) from this repo to your device.
 3. Open HTTP Shortcuts, tap the vertical 3 dots in the top right corner, tap "Import/Export", then tap "Import from file". Select the json file you downloaded earlier.
 4. Go back to the main page, tap the 3 dot button again, then tap "Variables", and edit the values of `readerss_instance` and `readerss_api_key` to match those of your instance.
-5. Try using the share button on an app. A new item "Send to..." should appear on the share sheet. You can also save an article by tapping the shortcut inside the HTTP Shortcuts app itself.
+5. Try using the share button in an app. A new item "Send to..." with the HTTP Shortcuts icon should appear on the share sheet. You can also save an article by tapping the shortcut inside the HTTP Shortcuts app itself and pasting the URL.
 
 ### RSS feed reader
-The RSS feed URL is `<SERVER_ADDRESS>/feed?key=<API_KEY>`. Replace the placeholders with your proper values and add it to your feed reader of choice. If it doesn't work in your reader, open an issue and I will try my best to fix it!
+The RSS feed URL is `<SERVER_ADDRESS>/feed?key=<API_KEY>`. Replace the placeholders with your proper values and add it to your feed reader of choice. If it doesn't work in your reader, open an issue and I will try my best to resolve it!

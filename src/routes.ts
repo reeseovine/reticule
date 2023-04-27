@@ -78,7 +78,7 @@ router.get('/feed', (req: Request, res: Response) => {
 	<pubDate>${db.getAll().length > 0 ? new Date(db.get(-1).added).toUTCString() : ''}</pubDate>
 `
 
-	for (var entry of db.getAll()) {
+	for (var entry of db.getAll().reverse()) {
 		rss += `
 	<item>
 		<title>${entry.title}</title>
