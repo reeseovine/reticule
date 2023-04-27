@@ -5,7 +5,7 @@ dotenv.config()
 
 interface Shape {
 	key: string
-	def: string | number // default value ('default' is a reserved keyword, so i used 'def')
+	def: string | number | boolean // default value ('default' is a reserved keyword, so i used 'def')
 	env: string
 	validate?: (value: any) => boolean
 }
@@ -20,6 +20,11 @@ const confSchema: Shape[] = [
 		def: '',
 		env: 'API_KEY',
 		validate: (value) => typeof value === 'string' && value.length > 0,
+	},
+	{
+		key: 'public',
+		def: false,
+		env: 'PUBLIC',
 	},
 	{
 		key: 'db_file',
@@ -40,11 +45,11 @@ const confSchema: Shape[] = [
 ]
 
 interface Conf {
-	[name: string]: string | number
+	[name: string]: string | number | boolean
 }
 let envConf: Conf = {}
 for (var item of confSchema) {
-	envConf[item.key] = (process.env[item.env] as string | number | undefined) || item.def
+	envConf[item.key] = (process.env[item.env] as string | number | boolean | undefined) || item.def
 }
 
 export default envConf

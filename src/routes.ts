@@ -62,7 +62,7 @@ router.get('/json', (req: Request, res: Response) => {
 })
 
 router.get('/feed', (req: Request, res: Response) => {
-	if (!req.query.key || req.query.key != config.api_key) {
+	if (!config.public && (!req.query.key || req.query.key != config.api_key)) {
 		console.warn(`Unauthorized feed read attempt from ${req.ip} !`)
 		return res.sendStatus(401)
 	}
