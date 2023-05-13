@@ -1,65 +1,69 @@
 import { writeFile, existsSync, readFileSync, mkdir, PathLike } from 'fs'
+import { Low } from 'lowdb'
+import { JSONFile } from 'lowdb/node'
 import { dirname } from 'path'
 
-import config from './config'
-import { ArticleData } from 'article-parser'
+import config from './config.js'
+import { Article, LowData } from './types.js'
 
-interface Article extends ArticleData {
-	added: Date
-	id: number
-}
+const defaultData: LowData = {articles: []}
+const adapter = new JSONFile<LowData>(config.db_file as string)
+const db = new Low<LowData>(adapter, defaultData)
+await db.read()
 
-let DB: Article[] = []
-let skipWriting = false
+// let DB: Article[] = []
+// let skipWriting = false
 
-let load = () => {
-	let data
-	if (existsSync(config.db_file as PathLike)) {
-		data = readFileSync(config.db_file as PathLike).toString()
-		if (data.length > 0 && data !== '[]' && !(JSON.parse(data) as Article[])) {
-			console.error('Database file exists but is not valid! DATA WILL NOT BE SAVED!!')
-			skipWriting = true
-		} else {
-			DB = JSON.parse(data) as Article[]
-		}
-	}
-}
-load()
+// let init = async () => {
 
-let update = () => {
-	if (!skipWriting) {
-		mkdir(dirname(config.db_file as string), { recursive: true }, (err) => {
-			if (err) {
-				console.error('Unable to create database directory!')
-				throw err
-			}
+	// let data
+	// if (existsSync(config.db_file as PathLike)) {
+	// 	data = readFileSync(config.db_file as PathLike).toString()
+	// 	if (data.length > 0 && data !== '[]' && !(JSON.parse(data) as Article[])) {
+	// 		console.error('Database file exists but is not valid! DATA WILL NOT BE SAVED!!')
+	// 		skipWriting = true
+	// 	} else {
+	// 		DB = JSON.parse(data) as Article[]
+	// 	}
+	// }
+// }
 
-			writeFile(config.db_file as PathLike, JSON.stringify(DB), (err) => {
-				if (err) {
-					console.error('Unable to update database file!')
-					throw err
-				}
-				console.log('Database written to file successfully.')
-			})
-		})
-	}
-}
+// let update = async () => {
+// 	if (!skipWriting) {
+// 		mkdir(dirname(config.db_file as string), { recursive: true }, (err) => {
+// 			if (err) {
+// 				console.error('Unable to create database directory!')
+// 				throw err
+// 			}
 
+// 			writeFile(config.db_file as PathLike, JSON.stringify(DB), (err) => {
+// 				if (err) {
+// 					console.error('Unable to update database file!')
+// 					throw err
+// 				}
+// 				console.log('Database written to file successfully.')
+// 			})
+// 		})
+// 	}
+// }
+
+// await init()
 export default {
-	add: (article: Article) => {
-		DB.push(article)
-		update()
+	add: async (article: Article) => {
+		db.data.articles.push(article)
+		await db.write()
 	},
 	get: (index: number) => {
 		if (index < 0){
-			index += DB.length
+			index += db.data.articles.length
 		}
-		return DB[index]
+		return db.data.articles[index]
 	},
 	getAll: () => {
-		return DB
+		return [...db.data.articles]
 	}
 }
+
 
 /////// Below is my attempt to use sqlite3. I failed. Please help D:
 

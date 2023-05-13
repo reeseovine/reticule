@@ -1,16 +1,12 @@
 import { Express, Router, Request, Response } from 'express'
+import { extract, ArticleData } from '@extractus/article-extractor'
 
-import db from './database'
-import config from './config'
+import config from './config.js'
+import db from './database.js'
+import noCache from './middleware/no-cache.js'
+import cacheForever from './middleware/cache-forever.js'
+import { Article } from './types'
 
-import noCache from './middleware/no-cache'
-import cacheForever from './middleware/cache-forever'
-
-import { extract, ArticleData } from 'article-parser'
-interface Article extends ArticleData {
-	added: Date
-	id: number
-}
 
 const router = Router()
 
@@ -38,12 +34,13 @@ router.get('/add', noCache(), (req: Request, res: Response) => {
 	let url = decodeURIComponent(req.query.url as string)
 
 	extract(url)
-		.then((article) => {
-			db.add(
+		.then(async (article) => {
+			article = article as Article
+			await db.add(
 				Object.assign(article, {
 					added: new Date(),
 					id: Date.now(),
-				}) as Article
+				})
 			)
 			return res.status(200).send(`Successfully saved "${article.title}"!`)
 		})

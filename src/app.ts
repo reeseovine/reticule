@@ -1,7 +1,7 @@
 import express, { NextFunction, Request, Response, Express } from 'express'
 import 'express-async-errors'
 
-import routes from './routes'
+import routes from './routes.js'
 
 export const app = (app = express()): Express => {
 	app.use(routes)

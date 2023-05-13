@@ -1,5 +1,5 @@
-import config from './config'
-import { app } from './app'
+import { app } from './app.js'
+import config from './config.js'
 
 app().listen(config.port, () => {
 	console.info(`Listening on port ${config.port}`)
