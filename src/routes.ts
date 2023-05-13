@@ -36,13 +36,19 @@ router.get('/add', noCache(), (req: Request, res: Response) => {
 	extract(url)
 		.then(async (article) => {
 			article = article as Article
-			await db.add(
+			for (let entry of db.data.articles){
+				if (entry.url == article.url){
+					return res.status(200).send(`Skipping duplicate.`)
+				}
+			}
+			db.data.articles.push(
 				Object.assign(article, {
 					added: new Date(),
 					id: Date.now(),
 				})
 			)
-			return res.status(200).send(`Successfully saved "${article.title}"!`)
+			await db.write()
+			return res.status(201).send(`Successfully saved "${article.title}"!`)
 		})
 		.catch((err) => {
 			console.trace(err)
@@ -51,16 +57,16 @@ router.get('/add', noCache(), (req: Request, res: Response) => {
 })
 
 router.get('/json', (req: Request, res: Response) => {
-	if (!req.query.key || req.query.key != config.api_key) {
-		console.warn(`Unauthorized json read attempt from ${req.ip} !`)
+	if (!config.public && (!req.query.key || req.query.key != config.api_key)) {
+		console.warn(`Unauthorized /json read attempt from ${req.ip} !`)
 		return res.sendStatus(401)
 	}
-	res.json(db.getAll())
+	res.json(db.data.articles)
 })
 
 router.get('/feed', (req: Request, res: Response) => {
 	if (!config.public && (!req.query.key || req.query.key != config.api_key)) {
-		console.warn(`Unauthorized feed read attempt from ${req.ip} !`)
+		console.warn(`Unauthorized /feed read attempt from ${req.ip} !`)
 		return res.sendStatus(401)
 	}
 
@@ -72,10 +78,14 @@ router.get('/feed', (req: Request, res: Response) => {
 	<description>${config.feed_desc}</description>
 	<generator>readerss</generator>
 	<language>en</language>
-	<pubDate>${db.getAll().length > 0 ? new Date(db.get(-1).added).toUTCString() : ''}</pubDate>
+	<pubDate>${
+		db.data.articles.length > 0 ?
+			new Date(db.data.articles[db.data.articles.length-1].added).toUTCString() :
+			''
+	}</pubDate>
 `
 
-	for (var entry of db.getAll().reverse()) {
+	for (var entry of db.data.articles.reverse()) {
 		rss += `
 	<item>
 		<title>${entry.title}</title>

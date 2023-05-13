@@ -20,7 +20,8 @@ docker run -d \
 ### Docker Compose
 
 ```yaml
-version: '3.8'
+version: '3'
+
 services:
   readerss:
     image: reeseovine/readerss:latest
@@ -37,6 +38,7 @@ services:
       - DB_FILE=/data/db.json
       - FEED_TITLE=Reading list
       - FEED_DESCRIPTION=Articles saved to be read later
+      - PUBLIC=false
 ```
 
 ### Environment variables
@@ -48,6 +50,7 @@ services:
 | DB_FILE          | The path and filename of the database file within the container.  |
 | FEED_TITLE       | The name of your reading list feed that shows up in feed readers. |
 | FEED_DESCRIPTION | A short description to accompany the above.                       |
+| PUBLIC           | Allow reading your article feed without an API key                |
 
 ## Usage
 

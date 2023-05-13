@@ -1,7 +1,6 @@
 ## alpha
 - [x] use lowdb
-- [ ] deduplicate entries by URL
-- [ ] add `PUBLIC` setting so `/feed` and `/json` don't need an API key
+- [x] deduplicate entries by URL
 
 ## v1.0
 - [ ] change name to [**reticule**](https://en.wikipedia.org/wiki/Reticule_(handbag))
