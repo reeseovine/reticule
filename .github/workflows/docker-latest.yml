@@ -19,7 +19,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: reeseovine/readerss
+          images: reeseovine/reticule
           tags: type=raw,value=latest
           labels: org.opencontainers.image.licenses=MIT
 

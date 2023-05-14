@@ -22,18 +22,18 @@
 	"variables": [
 		{
 			"id": "46f4aa6c-36f2-4355-ae47-02d7aba12ef7",
-			"key": "readerss_instance",
+			"key": "reticule_instance",
 			"value": "https://your.instance.url.without.trailing.slash"
 		},
 		{
 			"id": "21e44c15-ba2d-4be1-832f-c0ff0106325d",
-			"key": "readerss_api_key",
+			"key": "reticule_api_key",
 			"value": "your_key_that_you_used_when_setting_up_your_instance"
 		},
 		{
 			"flags": 1,
 			"id": "fd0331b6-7636-4795-a079-c7ed5ae66aca",
-			"key": "readerss_url",
+			"key": "reticule_url",
 			"title": "Article URL",
 			"type": "text",
 			"urlEncode": true

@@ -80,7 +80,7 @@ router.get('/feed', (req: Request, res: Response) => {
 <channel>
 	<title>${config.feed_title}</title>
 	<description>${config.feed_desc}</description>
-	<generator>readerss</generator>
+	<generator>Reticule</generator>
 	<language>en</language>
 	<pubDate>${
 		db.data.articles.length > 0 ?

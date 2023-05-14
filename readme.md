@@ -1,9 +1,9 @@
-# readerss
+# Reticule
 
 basic express server for saving online articles to read later.
 
 ### note: improvements are underway and i'm planning to release a proper Version™ with a new name and license soon.
-see [todo.md](todo.md) for roadmap
+see [roadmap.md](roadmap.md) for progress
 
 ## Installation
 
@@ -13,8 +13,8 @@ see [todo.md](todo.md) for roadmap
 docker run -d \
   -p 3000:80 \
   -e API_KEY=e44dd04a559c71f0 \
-  -v ./readerdata:/data \
-  reeseovine/readerss:latest
+  -v ./reticule:/data \
+  reeseovine/reticule:latest
 ```
 
 ### Docker Compose
@@ -23,13 +23,13 @@ docker run -d \
 version: '3'
 
 services:
-  readerss:
-    image: reeseovine/readerss:latest
+  reticule:
+    image: reeseovine/reticule:latest
     restart: unless-stopped
     ports:
       - 3000:80
     volumes:
-      - ./readerdata:/data
+      - ./reticule:/data
     environment:
       - API_KEY=5184424c7804a089  # generate a strong secret with `openssl rand -hex 32`
       
@@ -61,9 +61,9 @@ services:
 
 ### Android
 1. Install HTTP Shortcuts from [F-Droid](https://f-droid.org/en/packages/ch.rmy.android.http_shortcuts/) or the [Play Store](https://play.google.com/store/apps/details?id=ch.rmy.android.http_shortcuts).
-2. Download [`readerss_http_shortcut.json`](extra/readerss_http_shortcut.json) from this repo to your device.
+2. Download [`reticule_http_shortcut.json`](extra/reticule_http_shortcut.json) from this repo to your device.
 3. Open HTTP Shortcuts, tap the vertical 3 dots in the top right corner, tap "Import/Export", then tap "Import from file". Select the json file you downloaded earlier.
-4. Go back to the main page, tap the 3 dot button again, then tap "Variables", and edit the values of `readerss_instance` and `readerss_api_key` to match those of your instance.
+4. Go back to the main page, tap the 3 dot button again, then tap "Variables", and edit the values of `reticule_instance` and `reticule_api_key` to match those of your instance.
 5. Try using the share button in an app. A new item "Send to..." with the HTTP Shortcuts icon should appear on the share sheet. You can also save an article by tapping the shortcut inside the HTTP Shortcuts app itself and pasting the URL.
 
 ### RSS feed reader
