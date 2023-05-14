@@ -30,23 +30,26 @@ router.get('/add', noCache(), (req: Request, res: Response) => {
 		console.error('No URL given. Skipping...')
 		return res.sendStatus(400)
 	}
-	console.info(`Adding ${req.query.url}`)
 	let url = decodeURIComponent(req.query.url as string)
+	for (let entry of db.data.articles){
+		if (entry.url == url){
+			return res.status(200).send(`Skipping duplicate.`)
+		}
+	}
 
+	console.info(`Adding ${req.query.url}`)
 	extract(url)
 		.then(async (article) => {
 			article = article as Article
-			for (let entry of db.data.articles){
-				if (entry.url == article.url){
-					return res.status(200).send(`Skipping duplicate.`)
-				}
-			}
 			db.data.articles.push(
 				Object.assign(article, {
 					added: new Date(),
 					id: Date.now(),
 				})
 			)
+			db.data.articles.sort((a: Article, b: Article) => {
+				return new Date(a.added).getTime() - new Date(b.added).getTime()
+			})
 			await db.write()
 			return res.status(201).send(`Successfully saved "${article.title}"!`)
 		})
@@ -55,6 +58,7 @@ router.get('/add', noCache(), (req: Request, res: Response) => {
 			return res.sendStatus(500)
 		})
 })
+
 
 router.get('/json', (req: Request, res: Response) => {
 	if (!config.public && (!req.query.key || req.query.key != config.api_key)) {

@@ -12,6 +12,7 @@
 
 ## v1.1
 - [ ] sanitize articles before saving them (remove unnecessary elements, params, etc.)
+- [ ] improve the bookmarklet (stay on the page, show a notification with result)
 - [ ] generate an API key and log it on first start
 - [ ] add a simple landing page on `/` with setup instructions
 - [ ] add API key reroll function?
