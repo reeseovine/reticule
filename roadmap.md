@@ -8,11 +8,14 @@
 - [ ] change license to [NPL](https://thufie.lain.haus/NPL.html)?
 - [ ] move away from github
   - [ ] create woodpecker build pipeline
-  - [ ] host container image on forgejo and docker hub
+  - [x] host container image on forgejo
+  - [ ] host container image on docker hub
+  - [ ] point old docker hub page to `reeseovine/reticule`
 
 ## v1.1
+- [ ] actually validate the config
 - [ ] sanitize articles before saving them (remove unnecessary elements, params, etc.)
 - [ ] improve the bookmarklet (stay on the page, show a notification with result)
 - [ ] generate an API key and log it on first start
+- [ ] add API key reroll function
 - [ ] add a simple landing page on `/` with setup instructions
-- [ ] add API key reroll function?
