@@ -3,7 +3,7 @@ pipeline:
     image: woodpeckerci/plugin-docker-buildx
     when:
       event: push
-      branch: main
+      branch: ${CI_REPO_DEFAULT_BRANCH}
     settings:
       dry_run: true
       platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm64/v8,linux/riscv64
