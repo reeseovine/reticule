@@ -1,6 +1,5 @@
 {
 	"type": "module",
-	"exports": "dist/server.js",
 	"node": "^12.20.0 || ^14.13.1 || >=16.0.0",
 	"name": "reticule",
 	"version": "0.0.0",
@@ -39,7 +38,6 @@
 		"printWidth": 100,
 		"semi": false,
 		"singleQuote": true,
-		"jsxSingleQuote": true,
 		"quoteProps": "consistent"
 	}
 }

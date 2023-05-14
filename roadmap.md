@@ -3,7 +3,7 @@
 - [x] deduplicate entries by URL
 
 ## v1.0
-- [ ] change name to [**reticule**](https://en.wikipedia.org/wiki/Reticule_(handbag))
+- [x] change name to [**reticule**](https://en.wikipedia.org/wiki/Reticule_(handbag))
 - [ ] get a logo (https://en.wikipedia.org/wiki/Reticule_(handbag)#/media/File:Reticule.tif ?)
 - [ ] change license to [NPL](https://thufie.lain.haus/NPL.html)?
 - [ ] move away from github

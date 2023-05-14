@@ -7,7 +7,6 @@ import noCache from './middleware/no-cache.js'
 import cacheForever from './middleware/cache-forever.js'
 import { Article } from './types'
 
-
 const router = Router()
 
 router.get('/favicon.ico', cacheForever(), (_: Request, res: Response) => res.sendStatus(204))
@@ -31,8 +30,8 @@ router.get('/add', noCache(), (req: Request, res: Response) => {
 		return res.sendStatus(400)
 	}
 	let url = decodeURIComponent(req.query.url as string)
-	for (let entry of db.data.articles){
-		if (entry.url == url){
+	for (let entry of db.data.articles) {
+		if (entry.url == url) {
 			return res.status(200).send(`Skipping duplicate.`)
 		}
 	}
@@ -48,7 +47,7 @@ router.get('/add', noCache(), (req: Request, res: Response) => {
 				})
 			)
 			db.data.articles.sort((a: Article, b: Article) => {
-				return new Date(a.added).getTime() - new Date(b.added).getTime()
+				return new Date(b.added).getTime() - new Date(a.added).getTime()
 			})
 			await db.write()
 			return res.status(201).send(`Successfully saved "${article.title}"!`)
@@ -58,7 +57,6 @@ router.get('/add', noCache(), (req: Request, res: Response) => {
 			return res.sendStatus(500)
 		})
 })
-
 
 router.get('/json', (req: Request, res: Response) => {
 	if (!config.public && (!req.query.key || req.query.key != config.api_key)) {
@@ -83,13 +81,13 @@ router.get('/feed', (req: Request, res: Response) => {
 	<generator>Reticule</generator>
 	<language>en</language>
 	<pubDate>${
-		db.data.articles.length > 0 ?
-			new Date(db.data.articles[db.data.articles.length-1].added).toUTCString() :
-			''
+		db.data.articles.length > 0
+			? new Date(db.data.articles[1].added).toUTCString()
+			: ''
 	}</pubDate>
 `
 
-	for (var entry of db.data.articles.reverse()) {
+	for (var entry of db.data.articles) {
 		rss += `
 	<item>
 		<title>${entry.title}</title>

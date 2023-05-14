@@ -1,7 +1,6 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-
 interface Shape {
 	key: string
 	def: string | number | boolean // default value ('default' is a reserved keyword, so i used 'def')
