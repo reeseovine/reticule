@@ -1,16 +1,17 @@
 pipeline:
   publish:
     image: woodpeckerci/plugin-docker-buildx
-    when:
-      event: push
-      branch: ${CI_REPO_DEFAULT_BRANCH}
+    secrets: [FORGEJO_TOKEN]
     settings:
       dry_run: true
+      debug: true
+      branch: main
       platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm64/v8,linux/riscv64
       repo: git.cyberia.club/${CI_REPO_OWNER}/reticule
       registry: git.cyberia.club
       tags: latest
       username: ${CI_REPO_OWNER}
       password: ${FORGEJO_TOKEN}
-      secrets:
-        - FORGEJO_TOKEN
+    when:
+      event: push
+      branch: ${CI_REPO_DEFAULT_BRANCH}
