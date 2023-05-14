@@ -1,4 +1,4 @@
-FROM node:lts-alpine AS builder
+FROM node:current-alpine AS builder
 ENV NODE_ENV development
 
 WORKDIR /app
@@ -10,12 +10,12 @@ RUN npm ci && \
 
 
 
-FROM node:lts-alpine AS runner
+FROM node:current-alpine AS runner
 ENV NODE_ENV production
 
 # Copy source code
 WORKDIR /app
-COPY package* ./
+COPY package* .
 COPY --from=builder /app/dist ./dist
 
 # Install dependencies
