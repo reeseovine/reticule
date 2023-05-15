@@ -1,14 +1,14 @@
 pipeline:
   publish:
     image: woodpeckerci/plugin-docker-buildx
-    secrets: [FORGEJO_TOKEN]
+    secrets: [DOCKERHUB_TOKEN]
     settings:
       debug: true
       repo: git.cyberia.club/${CI_REPO_OWNER}/reticule
-      registry: git.cyberia.club
+      # registry: git.cyberia.club
       tags: latest
-      username: reese
-      password: ${FORGEJO_TOKEN}
+      username: reeseovine
+      password: ${DOCKERHUB_TOKEN}
     when:
       event: push
       branch: ${CI_REPO_DEFAULT_BRANCH}
