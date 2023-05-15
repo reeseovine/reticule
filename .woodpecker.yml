@@ -4,7 +4,7 @@ pipeline:
     settings:
       debug: true
       repo: git.cyberia.club/${CI_REPO_OWNER}/reticule
-      auto_tag: true
+      tag: latest
       registry: https://index.docker.io/v1/
       username: reeseovine
       password:
