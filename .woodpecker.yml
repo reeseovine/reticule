@@ -3,9 +3,8 @@ pipeline:
     image: woodpeckerci/plugin-docker-buildx
     secrets: [FORGEJO_TOKEN]
     settings:
-      dry_run: false
       debug: true
-      platforms: linux/amd64,linux/arm/v6,linux/arm64/v8
+      # platforms: linux/amd64,linux/arm/v6,linux/arm64/v8
       repo: git.cyberia.club/${CI_REPO_OWNER}/reticule
       registry: git.cyberia.club
       tags: latest
