@@ -7,7 +7,7 @@ pipeline:
       repo: git.cyberia.club/${CI_REPO_OWNER}/reticule
       registry: git.cyberia.club
       tags: latest
-      username: ${CI_REPO_OWNER}
+      username: reese
       password: ${FORGEJO_TOKEN}
     when:
       event: push
