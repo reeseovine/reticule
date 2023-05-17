@@ -15,7 +15,8 @@ ENV NODE_ENV production
 
 # Copy source code
 WORKDIR /app
-COPY package* .
+# When using COPY with more than one source file, the destination must be a directory and end with a /
+COPY package* ./
 COPY --from=builder /app/dist ./dist
 
 # Install dependencies
