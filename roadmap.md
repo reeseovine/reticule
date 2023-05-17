@@ -9,8 +9,8 @@
 - [ ] move away from github
   - [~] create woodpecker build pipeline
   - [x] host container image on forgejo
-  - [ ] host container image on docker hub
-  - [ ] point old docker hub page to `reeseovine/reticule`
+  - [x] host container image on docker hub
+  - [x] point old docker hub page to `reeseovine/reticule`
 
 ## v1.1
 - [ ] actually validate the config
