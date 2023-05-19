@@ -81,9 +81,7 @@ router.get('/feed', (req: Request, res: Response) => {
 	<generator>Reticule</generator>
 	<language>en</language>
 	<pubDate>${
-		db.data.articles.length > 0
-			? new Date(db.data.articles[1].added).toUTCString()
-			: ''
+		db.data.articles.length > 0 ? new Date(db.data.articles[1].added).toUTCString() : ''
 	}</pubDate>
 `
 
