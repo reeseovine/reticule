@@ -1,0 +1,14 @@
+pipeline:
+  publish:
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      debug: false
+      repo: git.cyberia.club/${CI_REPO_OWNER}/reticule
+      tag: latest
+      registry: https://git.cyberia.club/
+      username: ${CI_REPO_OWNER}
+      password:
+        from_secret: forgejo_token
+    when:
+      event: push
+      branch: main
