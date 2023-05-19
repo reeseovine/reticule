@@ -1,17 +1,3 @@
-## alpha
-- [x] use lowdb
-- [x] deduplicate entries by URL
-
-## v1.0
-- [x] change name to [**reticule**](https://en.wikipedia.org/wiki/Reticule_(handbag))
-- [x] change license
-- [ ] get a logo (https://en.wikipedia.org/wiki/Reticule_(handbag)#/media/File:Reticule.tif ?)
-- [ ] move away from github
-  - [~] create woodpecker build pipeline
-  - [x] host container image on forgejo
-  - [x] host container image on docker hub
-  - [x] point old docker hub page to `reeseovine/reticule`
-
 ## v1.1
 - [ ] actually validate the config
 - [ ] clean up the articles before saving them (remove unnecessary elements, params, etc.)
@@ -21,3 +7,17 @@
   - [ ] setup instructions
   - [ ] bookmarklet drag-and-drop
   - [ ] API key reroll
+- [ ] get a logo (https://en.wikipedia.org/wiki/Reticule_(handbag)#/media/File:Reticule.tif ?)
+
+## v1.0
+- [x] change name to [**reticule**](https://en.wikipedia.org/wiki/Reticule_(handbag))
+- [x] change license
+- [x] move away from github
+  - [x] create woodpecker build pipeline
+  - [x] host container image on forgejo
+  - [x] host container image on docker hub
+  - [x] point old docker hub page to `reeseovine/reticule`
+
+## alpha
+- [x] use lowdb
+- [x] deduplicate entries by URL
