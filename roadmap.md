@@ -1,4 +1,6 @@
-## v1.1
+## to do
+- [ ] tag container image
+- [ ] add atom XML endpoint
 - [ ] actually validate the config
 - [ ] clean up the articles before saving them (remove unnecessary elements, params, etc.)
 - [ ] improve the bookmarklet (stay on the page, show a notification/modal with the server response)

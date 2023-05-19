@@ -12,7 +12,7 @@ docker run -d \
   -p 3000:80 \
   -e API_KEY=e44dd04a559c71f0 \
   -v ./reticule:/data \
-  reeseovine/reticule:latest
+  git.cyberia.club/reese/reticule:latest
 ```
 
 ### Docker Compose
@@ -22,7 +22,7 @@ version: '3'
 
 services:
   reticule:
-    image: reeseovine/reticule:latest
+    image: git.cyberia.club/reese/reticule:latest
     restart: unless-stopped
     ports:
       - 3000:80
@@ -94,4 +94,3 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to http://unlicense.org/
-
