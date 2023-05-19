@@ -2,13 +2,13 @@
 	"type": "module",
 	"node": "^12.20.0 || ^14.13.1 || >=16.0.0",
 	"name": "reticule",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Save articles to read later in your feed aggregator of choice.",
 	"scripts": {
 		"start": "node ./dist/server.js",
 		"build": "rimraf -fr ./dist/* && tsc",
 		"dev": "nodemon --verbose",
-		"format": "prettier"
+		"format": "prettier -w ./src/"
 	},
 	"keywords": [
 		"rss",
@@ -16,7 +16,7 @@
 		"bookmarklet"
 	],
 	"author": "Reese Sapphire <reese@ovine.xyz>",
-	"license": "MIT",
+	"license": "Unlicense",
 	"devDependencies": {
 		"@types/express": "^4.17.13",
 		"@types/node": "^18.16.1",
