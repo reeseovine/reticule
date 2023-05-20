@@ -5,7 +5,8 @@ import config from './config.js'
 import db from './database.js'
 import noCache from './middleware/no-cache.js'
 import cacheForever from './middleware/cache-forever.js'
-import { Article } from './types'
+import { Article } from './types.js'
+import pkgver from './version.js'
 
 const router = Router()
 
@@ -17,7 +18,7 @@ router.get('/robots.txt', cacheForever(), (_: Request, res: Response) => {
 })
 
 router.get('/healthcheck', noCache(), (_: Request, res: Response) => {
-	res.json({ timestamp: Date.now() })
+	res.json({ timestamp: Date.now(), version: pkgver })
 })
 
 router.get('/add', noCache(), (req: Request, res: Response) => {
@@ -78,7 +79,7 @@ router.get('/feed', (req: Request, res: Response) => {
 <channel>
 	<title>${config.feed_title}</title>
 	<description>${config.feed_desc}</description>
-	<generator>Reticule</generator>
+	<generator>Reticule ${pkgver}</generator>
 	<language>en</language>
 	<pubDate>${
 		db.data.articles.length > 0 ? new Date(db.data.articles[1].added).toUTCString() : ''

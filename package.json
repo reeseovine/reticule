@@ -5,10 +5,11 @@
 	"version": "1.0.1",
 	"description": "Save articles to read later in your feed aggregator of choice.",
 	"scripts": {
-		"start": "node ./dist/server.js",
-		"build": "rimraf -fr ./dist/* && tsc",
+		"build": "rimraf -fr ./dist && tsc",
 		"dev": "nodemon --verbose",
-		"format": "prettier -w ./src/"
+		"format": "prettier -w ./src/",
+		"prebuild": "node -p \"'export default ' + JSON.stringify('v'+require('./package.json').version)\" > src/version.ts",
+		"start": "node ./dist/server.js"
 	},
 	"keywords": [
 		"rss",

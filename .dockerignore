@@ -1,6 +1,7 @@
 dist/
 extra/
 node_modules/
+src/version.ts
 tmp/
 .editorconfig
 .gitignore
