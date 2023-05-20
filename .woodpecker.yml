@@ -3,6 +3,7 @@ pipeline:
     image: woodpeckerci/plugin-docker-buildx
     settings:
       debug: false
+      auto_tag: true
       repo: git.cyberia.club/${CI_REPO_OWNER}/reticule
       tag: latest
       registry: https://git.cyberia.club/
