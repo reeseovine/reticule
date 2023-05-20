@@ -8,7 +8,7 @@
 		"build": "rimraf -fr ./dist && tsc",
 		"dev": "nodemon --verbose",
 		"format": "prettier -w ./src/",
-		"prebuild": "node -p \"'export default ' + JSON.stringify('v'+require('./package.json').version)\" > src/version.ts",
+		"prebuild": "node ./get_version.js > src/version.ts",
 		"start": "node ./dist/server.js"
 	},
 	"keywords": [
@@ -25,12 +25,14 @@
 		"nodemon": "^2.0.16",
 		"prettier": "^2.6.2",
 		"rimraf": "^3.0.2",
+		"simple-git": "^3.18.0",
 		"ts-node": "^10.7.0",
 		"typescript": "^4.6.4"
 	},
 	"dependencies": {
 		"@extractus/article-extractor": "^7.2.15",
 		"dotenv": "^16.0.1",
+		"env-var": "^7.3.1",
 		"express": "^4.18.1",
 		"express-async-errors": "^3.1.1",
 		"lowdb": "^6.0.1"

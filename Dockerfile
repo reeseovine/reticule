@@ -5,8 +5,9 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies and transpile typescript
-RUN npm ci && \
-	npm run build
+RUN apk add --no-cache git && \
+    npm ci && \
+    npm run build
 
 
 
