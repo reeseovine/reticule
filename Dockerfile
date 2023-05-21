@@ -7,6 +7,7 @@ COPY . .
 # Install dependencies and transpile typescript
 RUN ls -al && \
     apk add --no-cache git && \
+    git log --oneline && \
     npm ci && \
     npm run build
 
