@@ -1,5 +1,11 @@
 dist/
+extra/
 node_modules/
 src/version.ts
 tmp/
-.env
+.editorconfig
+.gitignore
+.woodpecker.yml
+nodemon.json
+*.env
+*.md

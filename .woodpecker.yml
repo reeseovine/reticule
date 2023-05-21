@@ -12,4 +12,4 @@ pipeline:
         from_secret: forgejo_token
     when:
       event: push
-      branch: cicd
+      branch: main
