@@ -1,4 +1,9 @@
 pipeline:
+  fetch:
+    image: alpine/git
+    commands:
+      - git fetch --tags
+
   publish:
     image: woodpeckerci/plugin-docker-buildx
     settings:
