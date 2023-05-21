@@ -1,12 +1,12 @@
 import { writeFileSync } from 'fs'
 
+import pkg from './package.json' assert { type: 'json' }
+
 import { simpleGit } from 'simple-git'
 let git = simpleGit()
 
 // most recent tag
-let tags = await git.tags()
-console.dir(tags)
-let release = tags.latest
+let release = (await git.tags()).latest || 'v'+pkg.version
 
 let release_commit = await git.revparse(['--short', release])
 let current_commit = await git.revparse(['--short', 'HEAD'])
