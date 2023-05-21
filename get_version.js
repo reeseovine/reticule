@@ -6,6 +6,7 @@ let release = (await git.tags()).latest
 
 let release_commit = await git.revparse(['--short', release])
 let current_commit = await git.revparse(['--short', 'HEAD'])
+
 // are we currently on the latest tag?
 let isRelease = release_commit === current_commit
 
