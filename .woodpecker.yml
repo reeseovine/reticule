@@ -2,7 +2,7 @@ pipeline:
   publish:
     image: woodpeckerci/plugin-docker-buildx
     settings:
-      debug: false
+      debug: true
       auto_tag: true
       repo: git.cyberia.club/${CI_REPO_OWNER}/reticule
       tag: latest
