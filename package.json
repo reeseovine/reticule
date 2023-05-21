@@ -8,7 +8,7 @@
 		"build": "rimraf -fr ./dist && tsc",
 		"dev": "nodemon --verbose",
 		"format": "prettier -w ./src/",
-		"prebuild": "node ./get_version.js",
+		"prebuild": "./get_version.sh > src/version.ts",
 		"start": "node ./dist/server.js"
 	},
 	"keywords": [
