@@ -1,6 +1,6 @@
 #!/bin/sh
 
-tag="v0.0.0"
+tag="v$(jq -r '.version' package.json)"
 git config --global --add safe.directory "$(pwd)"
 if git describe --tags --abbrev=0 > /dev/null 2>&1; then
 	tag="$(git describe --tags --abbrev=0)"
