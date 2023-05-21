@@ -10,10 +10,11 @@
   - [ ] bookmarklet drag-and-drop
   - [ ] API key reroll
 - [ ] get a logo (https://en.wikipedia.org/wiki/Reticule_(handbag)#/media/File:Reticule.tif ?)
-- [x] tag container image
 
 ## v1.1
+- [x] tag container image
 - [x] actually validate the config
+- [x] include the version number (+ any changes) in the API
 
 ## v1.0
 - [x] change name to [**reticule**](https://en.wikipedia.org/wiki/Reticule_(handbag))

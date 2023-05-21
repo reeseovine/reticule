@@ -2,7 +2,7 @@
 	"type": "module",
 	"node": "^12.20.0 || ^14.13.1 || >=16.0.0",
 	"name": "reticule",
-	"version": "1.0.1",
+	"version": "1.2.0",
 	"description": "Save articles to read later in your feed aggregator of choice.",
 	"scripts": {
 		"build": "rimraf -fr ./dist && tsc",
